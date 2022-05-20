@@ -1,0 +1,14 @@
+on:
+  push:
+    tags:
+      - *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo ${{ github.sha }} > Release.txt
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: Release.txt
